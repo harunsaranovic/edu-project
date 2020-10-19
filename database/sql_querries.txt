@@ -1,0 +1,118 @@
+CREATE SCHEMA `edu_project` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci ;
+
+CREATE TABLE `edu_project`.`book` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100),
+  `description` VARCHAR(500),
+  `date_created` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `color` VARCHAR(20),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`chapter` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `number` INT,
+  `title` VARCHAR(100),
+  `description` VARCHAR(500),
+  `book_id` INT NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`exercise` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100),
+  `description` VARCHAR(500),
+  `order` INT,
+  `chapter_id` INT,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`question` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100),
+  `exercise_id` INT,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`answer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(300),
+  `question_id` INT,
+  `correct` BOOLEAN,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`teacher` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50),
+  `password` VARCHAR(300),
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+CREATE TABLE `edu_project`.`student` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `teacher_id` INT,
+  `username` VARCHAR(50),
+  `password` VARCHAR(300),
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8 COLLATE = utf8_swedish_ci;
+
+
+INSERT INTO `edu_project`.`teacher` (`username`, `password`) VALUES ('teacher', 'teacher');
+INSERT INTO `edu_project`.`teacher` (`username`, `password`) VALUES ('admin', 'admin');
+
+INSERT INTO `edu_project`.`student` (`teacher_id`, `username`, `password`) VALUES ('1', 'user', 'user');
+INSERT INTO `edu_project`.`student` (`teacher_id`, `username`, `password`) VALUES ('2', 'student', 'student');
+
+INSERT INTO `edu_project`.`book` (`title`, `description`, `color`) VALUES ('Test Book Title', 'Test book desc', 'blue');
+
+INSERT INTO `edu_project`.`chapter` (`number`, `title`, `description`, `book_id`) VALUES ('1', 'Chapter title', 'Test chapter desc. Parent book id 1', '1');
+INSERT INTO `edu_project`.`chapter` (`number`, `title`, `description`, `book_id`) VALUES ('2', 'Chapter title 2', 'Test chapter desc. Parent book id 1', '1');
+
+INSERT INTO `edu_project`.`exercise` (`title`, `description`, `order`, `chapter_id`) VALUES ('Exercise Title', 'Eercise descrption', '1', '1');
+INSERT INTO `edu_project`.`exercise` (`title`, `description`, `order`, `chapter_id`) VALUES ('Exercise Title', 'Eercise descrption', '2', '1');
+INSERT INTO `edu_project`.`exercise` (`title`, `description`, `order`, `chapter_id`) VALUES ('Exercise Title', 'Eercise descrption', '1', '2');
+INSERT INTO `edu_project`.`exercise` (`title`, `description`, `order`, `chapter_id`) VALUES ('Exercise Title', 'Eercise descrption', '2', '2');
+
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '1');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '2');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '3');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '4');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '6');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '5');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '7');
+INSERT INTO `edu_project`.`question` (`title`, `exercise_id`) VALUES ('Question Title?', '8');
+
+
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '1', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '1', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '1', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '1', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '2', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '2', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '2', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '2', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '3', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '3', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '3', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '3', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '4', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '4', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '4', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '4', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '5', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '5', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '5', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '5', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '6', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '6', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '6', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '6', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '7', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '7', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '7', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '7', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer A', '8', '1');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer B', '8', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer C', '8', '0');
+INSERT INTO `edu_project`.`answer` (`text`, `question_id`, `correct`) VALUES ('Answer D', '8', '0');
