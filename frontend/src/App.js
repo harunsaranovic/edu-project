@@ -1,6 +1,10 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/Header.js';
 import Login from './components/Login.js';
+import Register from './components/Register.js';
+import Books from './components/Books.js';
+import Book from './components/Book.js';
 import Footer from './components/Footer.js';
 import './App.css';
 
@@ -8,8 +12,12 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-
-			<Login />
+			<Switch>
+				<Route path="/login" component={Login} />
+				<Route path="/register" component={Register} />
+				<Route path="/books" component={Books} />
+				<Route path="/book/:id" component={Book} />
+			</Switch>
 		</div>
 	);
 }

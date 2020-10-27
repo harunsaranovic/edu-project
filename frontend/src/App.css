@@ -26,7 +26,7 @@ body {
 }
 
 header {
-	padding: .75em 5%;
+	padding: .25em 5%;
 	width: 90%;
 	position: fixed;
 	background-color: #222929;
@@ -54,8 +54,20 @@ header div {
 	margin-left: 1em;
 }
 
+a {
+	text-decoration: none;
+}
+
+.header-link a {
+	color: #eee;
+}
+
+.header-link a:hover {
+	color: #fff;
+}
+
 .wrapper {
-	padding: 9em 10% 3em 10%;
+	padding: 9em 10% 5em 10%;
 }
 
 .login-wrapper {
@@ -103,6 +115,7 @@ header div {
 input[type=submit] {
 	background-color: #1aa31a;
 	border-color: #1aa31a;
+	font-weight: 700;
 }
 
 input {
@@ -118,4 +131,18 @@ h3,
 h4,
 h5 {
 	text-transform: uppercase;
+}
+
+.create-account-link {
+	color: #1aa31a;
+	font-weight: 700;
+	font-size: 1.2em;
+}
+
+label {
+	font-size: .6em;
+	margin-left: 1.2em;
+	-text-transform: uppercase;
+	font-weight: 700;
+	color: #888;
 }
