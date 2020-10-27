@@ -12,11 +12,11 @@ const cookieParser = require('cookie-parser');
 app.use(cors());
 
 //Load routes
-const users = require('./routes/users');
+const apiRoutes = require('./routes/apiRoutes');
 
 const requestHandler = (request, response) => {
-  console.log(request.url);
-  response.end('Node.js Server!');
+	console.log(request.url);
+	response.end('Node.js Server!');
 };
 
 //bodyparser middleware
@@ -28,22 +28,22 @@ app.use(flash());
 
 //express session middleware
 app.use(
-  session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false
-  })
+	session({
+		secret: 'secret',
+		resave: false,
+		saveUninitialized: false
+	})
 );
 
 //use routes
-//app.use('/users', users);
+app.use('/', apiRoutes);
 
 app.get('/gettest', function(req, res) {
-  res.send('app.get works');
+	res.send('app.get works');
 });
 
 app.post('/posttest', function(req, res) {
-  res.send(req.body);
+	res.send(req.body);
 });
 
 app.listen(port, () => console.log(`Application started at http://localhost:${port}`));
