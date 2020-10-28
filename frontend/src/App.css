@@ -6,19 +6,13 @@
 	font-family: "Gilroy-Light";
 	src: url('fonts/Gilroy-Light.otf');
 }
-@font-face {
-	font-family: "Consola";
-	src: url('fonts/Inconsolata-Regular.ttf');
-}
 
 @font-face {
 	font-family: 'Tuffy Bold';
 	src: local('Tuffy Bold'), url('fonts/Tuffy-Bold.woff') format('woff');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Duru+Sans&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
@@ -32,11 +26,12 @@
 html,
 body {
 	margin: 0;
+	min-width: 600px;
 }
 
 body {
 	background-color: #eee;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Work Sans', sans-serif;
 	font-weight:400;
 	color:#262626;
 }
@@ -49,6 +44,7 @@ header {
 	z-index: 100;
 	transition: 0.3s;
 	color: #fff;
+	min-width: 600px;
 }
 
 header div {
@@ -108,14 +104,14 @@ form a {
 	height: auto;
 	background-color: #fff;
 	border-radius: 1em;
-	max-width: 1050px;
+	max-width: 1150px;
 }
 
 .login-image-placeholder {
 	background-image: url("img/woman_behind_laptop.png");
 	background-repeat: no-repeat;
 	height: 25em;
-	-display: inline-block;
+	display: inline-block;
 	max-width: 550px;
 	width: 45%;
 	height: auto;
@@ -125,7 +121,9 @@ form a {
 	background-position:center;
 	background-size:85%;
 	border-top-left-radius: 1em;
-	border-bottom-left-radius: 1em
+	border-bottom-left-radius: 1em;
+	opacity:1;
+	transition:0.4s;
 }
 
 .login-form {
@@ -136,24 +134,23 @@ form a {
 }
 
 .login-form input {
-	background-color: #262626;
-	border: solid 1px #262626;
-	color: #fff;
-	font-size: 1em;
-	padding: .5em 1em;
+	background-color: #eee;
+	border:0;
+	color: #262626;
+	padding: .5em .9em;
 	border-radius: 0.2em;
-	margin-bottom: .3em;
-	font-family:'Roboto Mono';
-	font-size:14px;
+	margin-bottom: .5em;
+	font-size:16px;
+	font-family: 'Work Sans', sans-serif;
 }
 
 input[type=submit] {
 	background-color: #83A866;
 	border-color: #83A866;
-	font-family: 'Roboto';
-	font-size:15px;
+	font-family: 'Tuffy Bold';
+	font-size: 18px;
+	padding:6px 10px 6px 10px;
 	text-transform:uppercase;
-	font-weight:700;
 	color:#fff;
 }
 
@@ -168,6 +165,8 @@ input {
 span {
 	font-size:16px;
 	line-height:28px;
+	margin-top:10px;
+	width:95%;
 }
 
 h3,
@@ -176,23 +175,24 @@ h5 {
 	text-transform: uppercase;
 	font-family: "Tuffy Bold";
 	font-weight:normal;
-	margin-bottom:13px;
-	color:#262626;
+	margin-bottom:12px;
+	color:#363636;
 }
 
 h3 {
-	font-size:22px;
+	font-size:25px;
+	margin-bottom:7px;
 }
 
 h4 {
-	font-size:19px;
+	font-size: 21px;
 }
 
 .create-account-link {
 	color: #83A866;
-	font-weight: 400;
-	font-size: 1.2em;
+	font-size: 1.4em;
 	line-height:4em;
+	font-family: "Tuffy Bold";
 }
 
 label {
@@ -202,3 +202,18 @@ label {
 	font-weight: 700;
 	color: #888;
 }
+
+@media screen and (max-width: 900px) {
+	.login-image-placeholder {
+	  opacity:0;
+	  display:none;
+	}
+	.login-form {
+		width: 100%;
+	}
+	.header-links {
+		margin-top:5px;
+		font-size:20px;
+	}
+	
+  }
