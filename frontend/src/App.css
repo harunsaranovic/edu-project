@@ -123,6 +123,7 @@ form a {
 	position: relative;
 	background-color: #C4D6B6;
 	background-position:center;
+	background-size:85%;
 	border-top-left-radius: 1em;
 	border-bottom-left-radius: 1em
 }
@@ -154,6 +155,10 @@ input[type=submit] {
 	text-transform:uppercase;
 	font-weight:700;
 	color:#fff;
+}
+
+input[type=submit]:hover {
+	cursor:pointer;
 }
 
 input {
