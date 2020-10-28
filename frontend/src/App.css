@@ -11,6 +11,19 @@
 	src: url('fonts/Inconsolata-Regular.ttf');
 }
 
+@font-face {
+	font-family: 'Tuffy Bold';
+	src: local('Tuffy Bold'), url('fonts/Tuffy-Bold.woff') format('woff');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Duru+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
+
 .roboto {
 	font-family: "Roboto";
 	letter-spacing: 0.4px;
@@ -23,17 +36,19 @@ body {
 
 body {
 	background-color: #eee;
+	font-family: 'Roboto', sans-serif;
+	font-weight:400;
+	color:#262626;
 }
 
 header {
 	padding: .25em 5%;
 	width: 90%;
 	position: fixed;
-	background-color: #222929;
-	border-bottom: solid 1px #1b2020;
+	background-color: #262626;
 	z-index: 100;
 	transition: 0.3s;
-	color: #eee;
+	color: #fff;
 }
 
 header div {
@@ -46,8 +61,14 @@ header div {
 	text-align: center;
 }
 
+.logo h3 {
+	color:#fff;
+}
+
 .header-links {
 	float: right;
+	font-family: "Ropa Sans";
+	font-size:22px;
 }
 
 .header-link {
@@ -67,7 +88,15 @@ a {
 }
 
 .wrapper {
-	padding: 9em 10% 5em 10%;
+	padding-top:22vh;
+	display:flex;
+	justify-content: center;
+	
+}
+
+form a {
+	font-size:12px;
+	font-weight:400;
 }
 
 .login-wrapper {
@@ -79,20 +108,23 @@ a {
 	height: auto;
 	background-color: #fff;
 	border-radius: 1em;
-}
-
-.gray-bg {
-	background-color: #222929;
+	max-width: 1050px;
 }
 
 .login-image-placeholder {
+	background-image: url("img/woman_behind_laptop.png");
+	background-repeat: no-repeat;
 	height: 25em;
 	-display: inline-block;
+	max-width: 550px;
 	width: 45%;
 	height: auto;
 	min-height: 100%;
 	position: relative;
-	background-color: aqua;
+	background-color: #C4D6B6;
+	background-position:center;
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em
 }
 
 .login-form {
@@ -103,19 +135,25 @@ a {
 }
 
 .login-form input {
-	background-color: #111;
-	border: solid 1px #111;
-	color: #eee;
+	background-color: #262626;
+	border: solid 1px #262626;
+	color: #fff;
 	font-size: 1em;
 	padding: .5em 1em;
-	border-radius: 5em;
+	border-radius: 0.2em;
 	margin-bottom: .3em;
+	font-family:'Roboto Mono';
+	font-size:14px;
 }
 
 input[type=submit] {
-	background-color: #1aa31a;
-	border-color: #1aa31a;
-	font-weight: 700;
+	background-color: #83A866;
+	border-color: #83A866;
+	font-family: 'Roboto';
+	font-size:15px;
+	text-transform:uppercase;
+	font-weight:700;
+	color:#fff;
 }
 
 input {
@@ -123,26 +161,39 @@ input {
 }
 
 span {
-	font-family: "Consola";
-	line-height: 1.5em;
+	font-size:16px;
+	line-height:28px;
 }
 
 h3,
 h4,
 h5 {
 	text-transform: uppercase;
+	font-family: "Tuffy Bold";
+	font-weight:normal;
+	margin-bottom:13px;
+	color:#262626;
+}
+
+h3 {
+	font-size:22px;
+}
+
+h4 {
+	font-size:19px;
 }
 
 .create-account-link {
-	color: #1aa31a;
-	font-weight: 700;
+	color: #83A866;
+	font-weight: 400;
 	font-size: 1.2em;
+	line-height:4em;
 }
 
 label {
 	font-size: .6em;
 	margin-left: 1.2em;
-	-text-transform: uppercase;
+	text-transform: uppercase;
 	font-weight: 700;
 	color: #888;
 }
