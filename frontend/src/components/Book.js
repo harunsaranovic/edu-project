@@ -50,7 +50,7 @@ class Book extends React.Component {
 			return <div>Loading...</div>;
 		} else {
 			return (
-				<div class="wrapper">
+				<div class="block-wrapper">
 					{books.map((item) => (
 						<div className={'book'}>
 							<Link to={`/books`}>Back</Link>

@@ -13,10 +13,10 @@ class Header extends React.Component {
 						<Link to="/books">Books</Link>
 					</div>
 					<div class="header-link">
-						<p id="d-networks">Empty</p>
+						<Link to="/login">Login</Link>
 					</div>
 					<div class="header-link">
-						<Link to="/login">Login</Link>
+						<Link to="/register">Register</Link>
 					</div>
 				</div>
 			</header>

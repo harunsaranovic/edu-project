@@ -51,19 +51,26 @@ class Exercise extends React.Component {
 			return <div>Loading...</div>;
 		} else {
 			return (
-				<div class="wrapper">
+				<div class="block-wrapper">
 					{exercises.map((item) => (
 						<div className={'book'}>
 							<Link to={`/chapter/${item.chapter_id}`}>Back</Link>
 							<h1 key={item.title}>{item.title}</h1>
 							<hr />
 							<span>{item.description}</span>
-							<ul />
 						</div>
 					))}
 					{questions.map((question) => (
-						<div>
-							<h5>{question.title}</h5>
+						<div class="questions">
+							<h5>{question.questionTitle}</h5>
+							{question.answers.map((answer) => (
+								<ul>
+									<li>
+										<input type="checkbox" />
+										<span>{answer.text}</span>
+									</li>
+								</ul>
+							))}
 						</div>
 					))}
 				</div>

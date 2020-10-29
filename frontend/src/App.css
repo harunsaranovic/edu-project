@@ -65,6 +65,7 @@ header div {
 	float: right;
 	font-family: "Ropa Sans";
 	font-size: 22px;
+	padding-top: 25px;
 }
 
 .header-link {
@@ -87,6 +88,10 @@ a {
 	padding-top: 22vh;
 	display: flex;
 	justify-content: center;
+}
+
+.block-wrapper {
+	padding: 22vh 20% 0 20%;
 }
 
 form a {
@@ -204,6 +209,7 @@ label {
 
 .book-grid {
 	display: grid;
+	padding: 22vh 20% 0 20%;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-gap: 20px;
 	align-items: stretch;
@@ -229,6 +235,17 @@ label {
 .red {
 	background-color: #c03030;
 }
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0;
+	list-style-type: none;
+}
+
 @media screen and (max-width: 900px) {
 	.login-image-placeholder {
 		opacity: 0;
