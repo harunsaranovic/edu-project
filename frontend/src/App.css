@@ -146,3 +146,31 @@ label {
 	font-weight: 700;
 	color: #888;
 }
+
+.book-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
+	align-items: stretch;
+}
+
+.book-card {
+	text-align: center;
+	width: 100%;
+	min-height: 200px;
+	display: grid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.book-card h1 {
+	color: #fff;
+}
+
+.blue {
+	background-color: #3838b4;
+}
+
+.red {
+	background-color: #c03030;
+}

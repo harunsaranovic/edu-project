@@ -35,10 +35,12 @@ class Books extends React.Component {
 			return <div>Loading...</div>;
 		} else {
 			return (
-				<div class="wrapper">
+				<div class="wrapper book-grid">
 					{books.map((item) => (
 						<Link to={`/book/${item.id}`}>
-							<h1 key={item.title}>{item.title}</h1>
+							<div className={`book-card ${item.color}`}>
+								<h1 key={item.title}>{item.title}</h1>
+							</div>
 						</Link>
 					))}
 				</div>

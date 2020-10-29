@@ -1,22 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Book extends React.Component {
+class Exercise extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			error: null,
 			isLoaded: false,
-			books: [],
-			chapters: []
+			exercises: [],
+			questions: []
 		};
 	}
 	componentDidMount() {
-		fetch('http://localhost:8080/getbook/' + this.props.match.params.id).then((res) => res.json()).then(
+		fetch('http://localhost:8080/getexercise/' + this.props.match.params.id).then((res) => res.json()).then(
 			(result) => {
 				this.setState({
 					isLoaded: true,
-					books: result
+					exercises: result
 				});
 			},
 			(error) => {
@@ -26,11 +26,12 @@ class Book extends React.Component {
 				});
 			}
 		);
-		fetch('http://localhost:8080/getchaptersfrombook/' + this.props.match.params.id).then((res) => res.json()).then(
+		fetch('http://localhost:8080/getanswer/' + this.props.match.params.id).then((res) => res.json()).then(
 			(result) => {
+				console.log(result);
 				this.setState({
 					isLoaded: true,
-					chapters: result
+					questions: result
 				});
 			},
 			(error) => {
@@ -43,7 +44,7 @@ class Book extends React.Component {
 	}
 
 	render() {
-		const { error, isLoaded, books, chapters } = this.state;
+		const { error, isLoaded, exercises, questions } = this.state;
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
@@ -51,18 +52,18 @@ class Book extends React.Component {
 		} else {
 			return (
 				<div class="wrapper">
-					{books.map((item) => (
+					{exercises.map((item) => (
 						<div className={'book'}>
-							<Link to={`/books`}>Back</Link>
+							<Link to={`/chapter/${item.chapter_id}`}>Back</Link>
 							<h1 key={item.title}>{item.title}</h1>
 							<hr />
 							<span>{item.description}</span>
 							<ul />
 						</div>
 					))}
-					{chapters.map((chapter) => (
+					{questions.map((question) => (
 						<div>
-							<Link to={`/chapter/${chapter.id}`}>{chapter.title}</Link>
+							<h5>{question.title}</h5>
 						</div>
 					))}
 				</div>
@@ -71,4 +72,4 @@ class Book extends React.Component {
 	}
 }
 
-export default Book;
+export default Exercise;
