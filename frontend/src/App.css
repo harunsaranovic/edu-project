@@ -6,10 +6,17 @@
 	font-family: "Gilroy-Light";
 	src: url('fonts/Gilroy-Light.otf');
 }
+
 @font-face {
-	font-family: "Consola";
-	src: url('fonts/Inconsolata-Regular.ttf');
+	font-family: 'Tuffy Bold';
+	src: local('Tuffy Bold'), url('fonts/Tuffy-Bold.woff') format('woff');
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
 
 .roboto {
 	font-family: "Roboto";
@@ -19,21 +26,25 @@
 html,
 body {
 	margin: 0;
+	min-width: 600px;
 }
 
 body {
 	background-color: #eee;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 400;
+	color: #262626;
 }
 
 header {
 	padding: .25em 5%;
 	width: 90%;
 	position: fixed;
-	background-color: #222929;
-	border-bottom: solid 1px #1b2020;
+	background-color: #262626;
 	z-index: 100;
 	transition: 0.3s;
-	color: #eee;
+	color: #fff;
+	min-width: 600px;
 }
 
 header div {
@@ -46,8 +57,14 @@ header div {
 	text-align: center;
 }
 
+.logo h3 {
+	color: #fff;
+}
+
 .header-links {
 	float: right;
+	font-family: "Ropa Sans";
+	font-size: 22px;
 }
 
 .header-link {
@@ -67,7 +84,14 @@ a {
 }
 
 .wrapper {
-	padding: 9em 10% 5em 10%;
+	padding-top: 22vh;
+	display: flex;
+	justify-content: center;
+}
+
+form a {
+	font-size: 12px;
+	font-weight: 400;
 }
 
 .login-wrapper {
@@ -79,20 +103,26 @@ a {
 	height: auto;
 	background-color: #fff;
 	border-radius: 1em;
-}
-
-.gray-bg {
-	background-color: #222929;
+	max-width: 1150px;
 }
 
 .login-image-placeholder {
+	background-image: url("img/woman_behind_laptop.png");
+	background-repeat: no-repeat;
 	height: 25em;
-	-display: inline-block;
+	display: inline-block;
+	max-width: 550px;
 	width: 45%;
 	height: auto;
 	min-height: 100%;
 	position: relative;
-	background-color: aqua;
+	background-color: #c4d6b6;
+	background-position: center;
+	background-size: 85%;
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em;
+	opacity: 1;
+	transition: 0.4s;
 }
 
 .login-form {
@@ -103,19 +133,28 @@ a {
 }
 
 .login-form input {
-	background-color: #111;
-	border: solid 1px #111;
-	color: #eee;
-	font-size: 1em;
-	padding: .5em 1em;
-	border-radius: 5em;
-	margin-bottom: .3em;
+	background-color: #eee;
+	border: 0;
+	color: #262626;
+	padding: .5em .9em;
+	border-radius: 0.2em;
+	margin-bottom: .5em;
+	font-size: 16px;
+	font-family: 'Work Sans', sans-serif;
 }
 
 input[type=submit] {
-	background-color: #1aa31a;
-	border-color: #1aa31a;
-	font-weight: 700;
+	background-color: #83a866;
+	border-color: #83a866;
+	font-family: 'Tuffy Bold';
+	font-size: 18px;
+	padding: 6px 10px 6px 10px;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+input[type=submit]:hover {
+	cursor: pointer;
 }
 
 input {
@@ -123,26 +162,42 @@ input {
 }
 
 span {
-	font-family: "Consola";
-	line-height: 1.5em;
+	font-size: 16px;
+	line-height: 28px;
+	margin-top: 10px;
+	width: 95%;
 }
 
 h3,
 h4,
 h5 {
 	text-transform: uppercase;
+	font-family: "Tuffy Bold";
+	font-weight: normal;
+	margin-bottom: 12px;
+	color: #363636;
+}
+
+h3 {
+	font-size: 25px;
+	margin-bottom: 7px;
+}
+
+h4 {
+	font-size: 21px;
 }
 
 .create-account-link {
-	color: #1aa31a;
-	font-weight: 700;
-	font-size: 1.2em;
+	color: #83a866;
+	font-size: 1.4em;
+	line-height: 4em;
+	font-family: "Tuffy Bold";
 }
 
 label {
 	font-size: .6em;
 	margin-left: 1.2em;
-	-text-transform: uppercase;
+	text-transform: uppercase;
 	font-weight: 700;
 	color: #888;
 }
@@ -173,4 +228,17 @@ label {
 
 .red {
 	background-color: #c03030;
+}
+@media screen and (max-width: 900px) {
+	.login-image-placeholder {
+		opacity: 0;
+		display: none;
+	}
+	.login-form {
+		width: 100%;
+	}
+	.header-links {
+		margin-top: 5px;
+		font-size: 20px;
+	}
 }

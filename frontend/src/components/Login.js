@@ -17,9 +17,9 @@ class Login extends React.Component {
 						</span>
 						<form>
 							<h4>Your account</h4>
-							<input type="text" name="username" />
+							<input type="text" name="username" placeholder="Username"/>
 							<br />
-							<input type="password" name="password" />
+							<input type="password" name="password" placeholder="Password"/>
 							<br />
 							<a>Forgot you password?</a>
 							<br />
@@ -28,7 +28,7 @@ class Login extends React.Component {
 							<br />
 
 							<Link to="/register" className="create-account-link">
-								Create account here
+								No account? Register here!
 							</Link>
 						</form>
 					</div>
