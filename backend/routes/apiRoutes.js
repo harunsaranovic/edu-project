@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const Student = require('../models/student');
 
 var con = mysql.createConnection({
 	host: 'localhost',
@@ -13,6 +14,14 @@ var con = mysql.createConnection({
 con.connect(function(err) {
 	if (err) throw err;
 	console.log('Connected!');
+});
+
+router.get('/test', function(req, res) {
+	Student.findOne({
+		where: { id: '1' }
+	}).then((result) => {
+		res.send(result);
+	});
 });
 
 router.get('/getbooks', function(req, res) {

@@ -7,12 +7,16 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
+
+require('./config/sequelize');
 
 //Cors setup
 app.use(cors());
 
 //Load routes
 const apiRoutes = require('./routes/apiRoutes');
+const authentication = require('./routes/authentication');
 
 const requestHandler = (request, response) => {
 	console.log(request.url);
@@ -22,6 +26,9 @@ const requestHandler = (request, response) => {
 //bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//passport authentication
+app.use(passport.initialize());
 
 //flash
 app.use(flash());
@@ -37,13 +44,6 @@ app.use(
 
 //use routes
 app.use('/', apiRoutes);
-
-app.get('/gettest', function(req, res) {
-	res.send('app.get works');
-});
-
-app.post('/posttest', function(req, res) {
-	res.send(req.body);
-});
+app.use('/', authentication);
 
 app.listen(port, () => console.log(`Application started at http://localhost:${port}`));
