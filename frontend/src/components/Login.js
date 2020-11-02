@@ -1,7 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router, Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { username: 'user', password: 'password', error: '' };
+	}
+
+	handleChange = (event) => {
+		this.setState({ [event.target.name]: event.target.value });
+	};
+
+	handleLogin = (event) => {
+		var _this = this;
+		fetch('http://localhost:8080/login', {
+			method: 'POST',
+			body: JSON.stringify(this.state),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(function(response) {
+			if (response.status == 200) {
+				response.json().then((json) => {
+					console.log(json);
+					_this.props.history.push('/books');
+				});
+			} else {
+				_this.setState({ error: ' Wrong login info.' });
+			}
+		});
+		event.preventDefault();
+	};
+
 	render() {
 		return (
 			<div class="wrapper gray-bg">
@@ -15,11 +45,25 @@ class Login extends React.Component {
 							tellus, sed ullamcorper ex tellus at leo. Nullam egestas ornare lectus vitae convallis.
 							Nullam ultrices, nisl in elementum finibus.
 						</span>
-						<form>
+						<form onSubmit={this.handleLogin}>
 							<h4>Your account</h4>
-							<input type="text" name="username" placeholder="Username"/>
+							<input
+								type="text"
+								name="username"
+								value={this.state.username}
+								onChange={this.handleChange}
+								placeholder="Username"
+							/>
 							<br />
-							<input type="password" name="password" placeholder="Password"/>
+							<input
+								type="password"
+								name="password"
+								value={this.state.password}
+								onChange={this.handleChange}
+								placeholder="Password"
+							/>
+							<br />
+							<a className={'dangerText'}>{this.state.error}</a>
 							<br />
 							<a>Forgot you password?</a>
 							<br />
