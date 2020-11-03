@@ -34,17 +34,20 @@ body {
 	font-family: 'Work Sans', sans-serif;
 	font-weight:400;
 	color:#262626;
+	height:100%;
 }
 
 header {
-	padding: .25em 5%;
-	width: 90%;
+	width: 100vw;
 	position: fixed;
 	background-color: #262626;
-	z-index: 100;
-	transition: 0.3s;
 	color: #fff;
 	min-width: 600px;
+	height:50px;
+	display:flex;
+	justify-content: space-between;
+	/*place-content:center;*/
+	
 }
 
 header div {
@@ -52,19 +55,20 @@ header div {
 }
 
 .logo {
-	margin-left: 45%;
-	width: 10%;
-	text-align: center;
+	align-self: center;
+	padding-left:2em;
 }
 
 .logo h3 {
 	color:#fff;
+	margin:0;
 }
 
 .header-links {
-	float: right;
 	font-family: "Ropa Sans";
 	font-size:22px;
+	align-self: center;
+	padding-right:2em;
 }
 
 .header-link {
@@ -84,10 +88,10 @@ a {
 }
 
 .wrapper {
-	padding-top:22vh;
 	display:flex;
 	justify-content: center;
-	
+	align-items: center;
+	height:100vh;
 }
 
 form a {
@@ -96,7 +100,6 @@ form a {
 }
 
 .login-wrapper {
-	margin: 0 5%;
 	min-height: 27em;
 	display: flex;
 	flex-direction: row;
@@ -116,7 +119,6 @@ form a {
 	width: 45%;
 	height: auto;
 	min-height: 100%;
-	position: relative;
 	background-color: #C4D6B6;
 	background-position:center;
 	background-size:85%;
