@@ -1,1 +1,0 @@
-//Implement user model for database

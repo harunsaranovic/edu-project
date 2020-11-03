@@ -47,7 +47,7 @@ header {
 	display:flex;
 	justify-content: space-between;
 	/*place-content:center;*/
-	
+
 }
 
 header div {
@@ -69,6 +69,7 @@ header div {
 	font-size:22px;
 	align-self: center;
 	padding-right:2em;
+	padding-top: 25px;
 }
 
 .header-link {
@@ -94,9 +95,13 @@ a {
 	height:100vh;
 }
 
+.block-wrapper {
+	padding: 22vh 20% 0 20%;
+}
+
 form a {
-	font-size:12px;
-	font-weight:400;
+	font-size: 12px;
+	font-weight: 400;
 }
 
 .login-wrapper {
@@ -119,13 +124,14 @@ form a {
 	width: 45%;
 	height: auto;
 	min-height: 100%;
-	background-color: #C4D6B6;
-	background-position:center;
-	background-size:85%;
+	position: relative;
+	background-color: #c4d6b6;
+	background-position: center;
+	background-size: 85%;
 	border-top-left-radius: 1em;
 	border-bottom-left-radius: 1em;
-	opacity:1;
-	transition:0.4s;
+	opacity: 1;
+	transition: 0.4s;
 }
 
 .login-form {
@@ -137,27 +143,31 @@ form a {
 
 .login-form input {
 	background-color: #eee;
-	border:0;
+	border: 0;
 	color: #262626;
 	padding: .5em .9em;
 	border-radius: 0.2em;
 	margin-bottom: .5em;
-	font-size:16px;
+	font-size: 16px;
 	font-family: 'Work Sans', sans-serif;
 }
 
 input[type=submit] {
-	background-color: #83A866;
-	border-color: #83A866;
+	background-color: #83a866;
+	border-color: #83a866;
 	font-family: 'Tuffy Bold';
 	font-size: 18px;
-	padding:6px 10px 6px 10px;
-	text-transform:uppercase;
-	color:#fff;
+	padding: 6px 10px 6px 10px;
+	text-transform: uppercase;
+	color: #fff;
 }
 
 input[type=submit]:hover {
-	cursor:pointer;
+	cursor: pointer;
+}
+
+.dangerText {
+	color: red;
 }
 
 input {
@@ -165,10 +175,10 @@ input {
 }
 
 span {
-	font-size:16px;
-	line-height:28px;
-	margin-top:10px;
-	width:95%;
+	font-size: 16px;
+	line-height: 28px;
+	margin-top: 10px;
+	width: 95%;
 }
 
 h3,
@@ -176,14 +186,14 @@ h4,
 h5 {
 	text-transform: uppercase;
 	font-family: "Tuffy Bold";
-	font-weight:normal;
-	margin-bottom:12px;
-	color:#363636;
+	font-weight: normal;
+	margin-bottom: 12px;
+	color: #363636;
 }
 
 h3 {
-	font-size:25px;
-	margin-bottom:7px;
+	font-size: 25px;
+	margin-bottom: 7px;
 }
 
 h4 {
@@ -191,9 +201,9 @@ h4 {
 }
 
 .create-account-link {
-	color: #83A866;
+	color: #83a866;
 	font-size: 1.4em;
-	line-height:4em;
+	line-height: 4em;
 	font-family: "Tuffy Bold";
 }
 
@@ -205,17 +215,55 @@ label {
 	color: #888;
 }
 
+.book-grid {
+	display: grid;
+	padding: 22vh 20% 0 20%;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
+	align-items: stretch;
+}
+
+.book-card {
+	text-align: center;
+	width: 100%;
+	min-height: 200px;
+	display: grid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.book-card h1 {
+	color: #fff;
+}
+
+.blue {
+	background-color: #3838b4;
+}
+
+.red {
+	background-color: #c03030;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0;
+	list-style-type: none;
+}
+
 @media screen and (max-width: 900px) {
 	.login-image-placeholder {
-	  opacity:0;
-	  display:none;
+		opacity: 0;
+		display: none;
 	}
 	.login-form {
 		width: 100%;
 	}
 	.header-links {
-		margin-top:5px;
-		font-size:20px;
+		margin-top: 5px;
+		font-size: 20px;
 	}
-	
-  }
+}
