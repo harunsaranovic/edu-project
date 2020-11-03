@@ -52,7 +52,7 @@ class Chapter extends React.Component {
 			return <div>Loading...</div>;
 		} else {
 			return (
-				<div class="block-wrapper">
+				<div className={'block-wrapper'}>
 					{chapters.map((item) => (
 						<div className={'book'}>
 							<Link to={`/book/${item.book_id}`}>Back</Link>

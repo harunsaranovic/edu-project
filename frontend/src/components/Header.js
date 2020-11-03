@@ -5,17 +5,17 @@ class Header extends React.Component {
 	render() {
 		return (
 			<header>
-				<div class="logo">
+				<div className={'logo'}>
 					<h3>Logo</h3>
 				</div>
-				<div class="header-links">
-					<div class="header-link">
+				<div className={'header-links'}>
+					<div className={'header-link'}>
 						<Link to="/books">Books</Link>
 					</div>
-					<div class="header-link">
+					<div className={'header-link'}>
 						<Link to="/login">Login</Link>
 					</div>
-					<div class="header-link">
+					<div className={'header-link'}>
 						<Link to="/register">Register</Link>
 					</div>
 				</div>

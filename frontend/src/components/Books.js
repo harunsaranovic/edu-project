@@ -35,7 +35,7 @@ class Books extends React.Component {
 			return <div>Loading...</div>;
 		} else {
 			return (
-				<div class="wrapper book-grid">
+				<div className={'wrapper book-grid'}>
 					{books.map((item) => (
 						<Link to={`/book/${item.id}`}>
 							<div className={`book-card ${item.color}`}>

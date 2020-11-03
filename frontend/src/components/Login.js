@@ -34,10 +34,10 @@ class Login extends React.Component {
 
 	render() {
 		return (
-			<div class="wrapper gray-bg">
-				<div class="login-wrapper">
-					<div class="login-image-placeholder" />
-					<div class="login-form">
+			<div className={'wrapper gray-bg'}>
+				<div className={'login-wrapper'}>
+					<div className={'login-image-placeholder'} />
+					<div className={'login-form'}>
 						<h3>Lorem ipsum dolor sit amet</h3>
 						<span>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vestibulum sapien vitae
