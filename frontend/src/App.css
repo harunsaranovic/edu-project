@@ -224,24 +224,35 @@ label {
 }
 
 .book-card {
+	background-image: url(img/book-effect.png);
 	text-align: center;
 	width: 100%;
-	min-height: 200px;
+	min-height: 300px;
 	display: grid;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius:5px;
+	border:rgba(0,0,0,0.3) 1px solid;
 }
+
 .book-card h1 {
-	color: #fff;
+	width:75%;
+	font-size:1.8em;
+	font-weight:400;
+	font-family: 'Ropa Sans', sans-serif;
+	padding-left:8px;
+
 }
 
-.blue {
-	background-color: #3838b4;
+.orange {
+	background-color: #ECB664;
+	color:rgba(0,0,0,0.7);
 }
 
-.red {
-	background-color: #c03030;
+.gray {
+	background-color: #698390;
+	color:rgba(255,255,255,0.9);
 }
 
 ul {
