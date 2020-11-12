@@ -32,19 +32,22 @@ body {
 body {
 	background-color: #eee;
 	font-family: 'Work Sans', sans-serif;
-	font-weight: 400;
-	color: #262626;
+	font-weight:400;
+	color:#262626;
+	height:100%;
 }
 
 header {
-	padding: .25em 5%;
-	width: 90%;
+	width: 100vw;
 	position: fixed;
 	background-color: #262626;
-	z-index: 100;
-	transition: 0.3s;
 	color: #fff;
 	min-width: 600px;
+	height:50px;
+	display:flex;
+	justify-content: space-between;
+	/*place-content:center;*/
+
 }
 
 header div {
@@ -52,19 +55,20 @@ header div {
 }
 
 .logo {
-	margin-left: 45%;
-	width: 10%;
-	text-align: center;
+	align-self: center;
+	padding-left:2em;
 }
 
 .logo h3 {
-	color: #fff;
+	color:#fff;
+	margin:0;
 }
 
 .header-links {
-	float: right;
 	font-family: "Ropa Sans";
-	font-size: 22px;
+	font-size:22px;
+	align-self: center;
+	padding-right:2em;
 	padding-top: 25px;
 }
 
@@ -85,9 +89,10 @@ a {
 }
 
 .wrapper {
-	padding-top: 22vh;
-	display: flex;
+	display:flex;
 	justify-content: center;
+	align-items: center;
+	height:100vh;
 }
 
 .block-wrapper {
@@ -100,7 +105,6 @@ form a {
 }
 
 .login-wrapper {
-	margin: 0 5%;
 	min-height: 27em;
 	display: flex;
 	flex-direction: row;
@@ -220,24 +224,35 @@ label {
 }
 
 .book-card {
+	background-image: url(img/book-effect.png);
 	text-align: center;
 	width: 100%;
-	min-height: 200px;
+	min-height: 300px;
 	display: grid;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius:5px;
+	border:rgba(0,0,0,0.3) 1px solid;
 }
+
 .book-card h1 {
-	color: #fff;
+	width:75%;
+	font-size:1.8em;
+	font-weight:400;
+	font-family: 'Ropa Sans', sans-serif;
+	padding-left:8px;
+
 }
 
-.blue {
-	background-color: #3838b4;
+.orange {
+	background-color: #ECB664;
+	color:rgba(0,0,0,0.7);
 }
 
-.red {
-	background-color: #c03030;
+.gray {
+	background-color: #698390;
+	color:rgba(255,255,255,0.9);
 }
 
 ul {
