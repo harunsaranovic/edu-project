@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Router, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ class Login extends React.Component {
 			if (response.status == 200) {
 				response.json().then((json) => {
 					console.log(json);
+					_this.props.login(json.user);
 					_this.props.history.push('/books');
 				});
 			} else {
@@ -82,4 +84,26 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+	return {
+		isLogged: state.isLogged,
+		username: state.username
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		login: (user) => {
+			dispatch({
+				type: 'LOGIN',
+				payload: {
+					isLogged: true,
+					user: user,
+					role: 'STUDENT'
+				}
+			});
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

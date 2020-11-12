@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Book extends React.Component {
 	constructor(props) {
 		super(props);
+		if (!props.isLogged) props.history.push('/login');
 		this.state = {
 			error: null,
 			isLoaded: false,
@@ -71,4 +73,11 @@ class Book extends React.Component {
 	}
 }
 
-export default Book;
+const mapStateToProps = (state) => {
+	return {
+		isLogged: state.isLogged,
+		user: state.user
+	};
+};
+
+export default connect(mapStateToProps)(Book);
