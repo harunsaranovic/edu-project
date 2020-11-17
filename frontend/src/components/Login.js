@@ -49,6 +49,8 @@ class Login extends React.Component {
 						</span>
 						<form onSubmit={this.handleLogin}>
 							<h4>Your account</h4>
+							<label>Username</label>
+							<br />
 							<input
 								type="text"
 								name="username"
@@ -56,6 +58,8 @@ class Login extends React.Component {
 								onChange={this.handleChange}
 								placeholder="Username"
 							/>
+							<br />
+							<label>Password</label>
 							<br />
 							<input
 								type="password"
