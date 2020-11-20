@@ -25,6 +25,9 @@ class Header extends React.Component {
 								<Link to="/books">Books</Link>
 							</div>
 							<div className={'header-link'}>
+								<Link to="/profile">{this.props.user}</Link>
+							</div>
+							<div className={'header-link'}>
 								<Link onClick={this.props.logout} to="/login">
 									Logout
 								</Link>

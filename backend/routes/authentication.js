@@ -6,6 +6,7 @@ const Student = require('../models/student');
 require('../config/passport')(passport);
 
 router.post('/login', (req, res, next) => {
+	console.log(req.body);
 	passport.authenticate('local', {
 		successRedirect: '/loginsuccess/' + req.body.username,
 		failureRedirect: '/loginfailure'
@@ -17,7 +18,20 @@ router.get('/loginfailure', (req, res) => {
 });
 
 router.get('/loginsuccess/:username', (req, res) => {
-	return res.status(200).json({ user: req.params.username, role: 'STUDENT' });
+	Student.findOne({
+		where: { username: req.params.username }
+	}).then((user) => {
+		if (user) {
+			return res.status(200).json({
+				user: user.username,
+				email: user.email,
+				teacher: user.teacher_id ? user.teacher_id : '',
+				role: 'STUDENT'
+			});
+		} else {
+			return '';
+		}
+	});
 });
 
 router.get('/logout', isValidUser, (req, res) => {

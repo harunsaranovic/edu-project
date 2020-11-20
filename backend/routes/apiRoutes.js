@@ -161,4 +161,11 @@ router.get('/getquestionanswers/:questionId', function(req, res) {
 	});
 });
 
+router.get('/getteachers', function(req, res) {
+	con.query('SELECT id, username FROM edu_project.teacher;', function(err, result) {
+		if (err) throw err;
+		res.send(result);
+	});
+});
+
 module.exports = router;

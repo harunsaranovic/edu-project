@@ -4,19 +4,22 @@ module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		await queryInterface.bulkInsert('books', [
 			{
-				title: 'Book 1',
+				title: 'Book 1 Title',
 				description: 'Description of the Book 1',
-				color: 'red'
+				color: 'red',
+				teacherId: 3
 			},
 			{
-				title: 'Book 2',
+				title: 'Book 2 Title',
 				description: 'Description of the Book 2',
-				color: 'blue'
+				color: 'blue',
+				teacherId: 4
 			},
 			{
 				title: 'Book 3 Title',
 				description: 'Description of the Book 3',
-				color: 'green'
+				color: 'green',
+				teacherId: 3
 			}
 		]);
 	},

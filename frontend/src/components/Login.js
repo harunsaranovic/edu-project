@@ -24,7 +24,7 @@ class Login extends React.Component {
 			if (response.status == 200) {
 				response.json().then((json) => {
 					console.log(json);
-					_this.props.login(json.user);
+					_this.props.login(json);
 					_this.props.history.push('/books');
 				});
 			} else {
@@ -93,12 +93,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		login: (user) => {
+		login: (data) => {
 			dispatch({
 				type: 'LOGIN',
 				payload: {
 					isLogged: true,
-					user: user,
+					user: data.user,
+					email: data.email,
+					teacher: data.teacher,
 					role: 'STUDENT'
 				}
 			});

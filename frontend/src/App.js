@@ -7,6 +7,7 @@ import Books from './components/Books.js';
 import Book from './components/Book.js';
 import Chapter from './components/Chapter.js';
 import Exercise from './components/Exercise.js';
+import Profile from './components/Profile.js';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 				<Route path="/book/:id" component={Book} />
 				<Route path="/chapter/:id" component={Chapter} />
 				<Route path="/exercise/:id" component={Exercise} />
+				<Route path="/profile" component={Profile} />
 			</Switch>
 		</div>
 	);
