@@ -208,12 +208,15 @@ h4 {
 }
 
 label {
-	font-size: .6em;
-	margin-left: 1.2em;
+	font-size: 0.8em;
 	text-transform: uppercase;
-	font-weight: 700;
-	color: #888;
+	font-weight: 400;
+	color: #424242;
+	font-family: 'Work Sans', sans-serif;
+	margin:2px 0 4px 1px;
+	display:inline-block;
 }
+
 
 .book-grid {
 	display: grid;
