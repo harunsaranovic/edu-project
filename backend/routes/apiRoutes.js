@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const Student = require('../models/student');
+const User = require('../models/user');
 
 var con = mysql.createConnection({
 	host: 'localhost',
@@ -17,64 +17,62 @@ con.connect(function(err) {
 });
 
 router.get('/test', function(req, res) {
-	Student.findOne({
-		where: { id: '1' }
-	}).then((result) => {
+	User.findAll().then((result) => {
 		res.send(result);
 	});
 });
 
 router.get('/getbooks', function(req, res) {
-	con.query('SELECT * FROM edu_project.book;', function(err, result) {
+	con.query('SELECT * FROM edu_project.books;', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getbook/:id', function(req, res) {
-	con.query('SELECT * FROM edu_project.book WHERE id = ' + req.params.id + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.books WHERE id = ' + req.params.id + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getchapters', function(req, res) {
-	con.query('SELECT * FROM edu_project.chapter;', function(err, result) {
+	con.query('SELECT * FROM edu_project.chapters;', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getchapter/:id', function(req, res) {
-	con.query('SELECT * FROM edu_project.chapter WHERE id = ' + req.params.id + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.chapters WHERE id = ' + req.params.id + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getchaptersfrombook/:bookId', function(req, res) {
-	con.query('SELECT * FROM edu_project.chapter WHERE book_id = ' + req.params.bookId + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.chapters WHERE bookId = ' + req.params.bookId + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getexercises', function(req, res) {
-	con.query('SELECT * FROM edu_project.exercise;', function(err, result) {
+	con.query('SELECT * FROM edu_project.exercises;', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getexercise/:id', function(req, res) {
-	con.query('SELECT * FROM edu_project.exercise WHERE id = ' + req.params.id + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.exercises WHERE id = ' + req.params.id + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getexercisesfromchapter/:chapterId', function(req, res) {
-	con.query('SELECT * FROM edu_project.exercise WHERE chapter_id = ' + req.params.chapterId + ';', function(
+	con.query('SELECT * FROM edu_project.exercises WHERE chapterId = ' + req.params.chapterId + ';', function(
 		err,
 		result
 	) {
@@ -84,28 +82,28 @@ router.get('/getexercisesfromchapter/:chapterId', function(req, res) {
 });
 
 router.get('/getquestions', function(req, res) {
-	con.query('SELECT * FROM edu_project.question;', function(err, result) {
+	con.query('SELECT * FROM edu_project.questions;', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getquestion/:id', function(req, res) {
-	con.query('SELECT * FROM edu_project.question WHERE id = ' + req.params.id + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.questions WHERE id = ' + req.params.id + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getquestionsfromexercise/:exerciseId', function(req, res) {
-	con.query('SELECT * FROM edu_project.question WHERE id = ' + req.params.exerciseId + ';', function(err, result) {
+	con.query('SELECT * FROM edu_project.questions WHERE id = ' + req.params.exerciseId + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
 });
 
 router.get('/getanswers', function(req, res) {
-	con.query('SELECT * FROM edu_project.answer;', function(err, result) {
+	con.query('SELECT * FROM edu_project.answers;', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});
@@ -114,33 +112,33 @@ router.get('/getanswers', function(req, res) {
 router.get('/getanswer/:id', function(req, res) {
 	//con.query('SELECT * FROM edu_project.answer WHERE question_id = ' + req.params.id + ';', function(err, result) {
 	con.query(
-		'SELECT * FROM edu_project.question LEFT JOIN edu_project.answer ON edu_project.question.id = answer.question_id WHERE edu_project.question.id = ' +
+		'SELECT * FROM edu_project.questions LEFT JOIN edu_project.answers ON edu_project.questions.id = answers.questionId WHERE edu_project.questions.exerciseId = ' +
 			req.params.id +
 			';',
 		function(err, result) {
 			if (err) throw err;
 
 			result.sort(function(a, b) {
-				return a.question_id - b.question_id;
+				return a.questionId - b.questionId;
 			});
 
 			var response = [];
 			var tempObject = [];
-			var questionId = result[0].question_id;
+			var questionId = result[0].questionId;
 			var questionTitle = result[0].title;
 			result.forEach((element) => {
-				if (element.question_id == questionId) {
+				if (element.questionId == questionId) {
 					tempObject.push({
-						answer_id: element.id,
+						answerId: element.id,
 						text: element.text
 					});
 				} else {
 					response.push({ questionId: questionId, questionTitle: questionTitle, answers: tempObject });
 					tempObject = [];
 					questionTitle = element.title;
-					questionId = element.question_id;
+					questionId = element.questionId;
 					tempObject.push({
-						answer_id: element.id,
+						answerId: element.id,
 						text: element.text
 					});
 				}
@@ -152,7 +150,7 @@ router.get('/getanswer/:id', function(req, res) {
 });
 
 router.get('/getquestionanswers/:questionId', function(req, res) {
-	con.query('SELECT * FROM edu_project.answer WHERE question_id = ' + req.params.questionId + ';', function(
+	con.query('SELECT * FROM edu_project.answers WHERE questionId = ' + req.params.questionId + ';', function(
 		err,
 		result
 	) {

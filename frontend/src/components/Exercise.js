@@ -56,7 +56,7 @@ class Exercise extends React.Component {
 				<div className={'block-wrapper'}>
 					{exercises.map((item) => (
 						<div className={'book'}>
-							<Link to={`/chapter/${item.chapter_id}`}>Back</Link>
+							<Link to={`/chapter/${item.chapterId}`}>Back</Link>
 							<h1 key={item.title}>{item.title}</h1>
 							<hr />
 							<span>{item.description}</span>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
+		if (!props.isLogged) props.history.push('/login');
 		this.state = { teachers: [], error: '' };
 	}
 	componentDidMount() {
@@ -71,12 +72,39 @@ class Profile extends React.Component {
 							<br />
 							<input type="email" name="email" value={this.props.email} onChange={this.handleChange} />
 							<br />
-							<label>Teacher</label>
+							<label>First name</label>
 							<br />
-							<select id="teachers" name="teacher" value={''} onChange={this.handleChange}>
-								{this.state.teachers.map((item) => <option value={item.id}>{item.username}</option>)}
-							</select>
+							<input
+								type="text"
+								name="firstName"
+								value={this.props.firstName}
+								onChange={this.handleChange}
+							/>
 							<br />
+							<label>Last name</label>
+							<br />
+							<input
+								type="text"
+								name="lastName"
+								value={this.props.lastName}
+								onChange={this.handleChange}
+							/>
+							<br />
+							{this.props.role == 'STUDENT' ? (
+								<div>
+									<label>Teacher</label>
+
+									<br />
+									<select id="teachers" name="teacher" value={''} onChange={this.handleChange}>
+										{this.state.teachers.map((item) => (
+											<option value={item.id}>{item.username}</option>
+										))}
+									</select>
+									<br />
+								</div>
+							) : (
+								''
+							)}
 							<a className={'dangerText'}>{this.state.error}</a>
 							<br />
 							<br />
@@ -94,7 +122,10 @@ const mapStateToProps = (state) => {
 		isLogged: state.isLogged,
 		user: state.user,
 		email: state.email,
-		teacher: state.teacher
+		teacher: state.teacher,
+		firstName: state.firstName,
+		lastName: state.lastName,
+		role: state.role
 	};
 };
 

@@ -105,7 +105,9 @@ const mapDispatchToProps = (dispatch) => {
 					user: data.user,
 					email: data.email,
 					teacher: data.teacher,
-					role: 'STUDENT'
+					role: data.role,
+					firstName: data.firstName,
+					lastName: data.lastName
 				}
 			});
 		}

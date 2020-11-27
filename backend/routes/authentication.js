@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Sequelize = require('sequelize');
-const Student = require('../models/student');
+const User = require('../models/user');
 require('../config/passport')(passport);
 
 router.post('/login', (req, res, next) => {
@@ -18,15 +18,17 @@ router.get('/loginfailure', (req, res) => {
 });
 
 router.get('/loginsuccess/:username', (req, res) => {
-	Student.findOne({
+	User.findOne({
 		where: { username: req.params.username }
 	}).then((user) => {
 		if (user) {
 			return res.status(200).json({
 				user: user.username,
 				email: user.email,
-				teacher: user.teacher_id ? user.teacher_id : '',
-				role: 'STUDENT'
+				teacher: user.teacherId ? user.teacherId : '',
+				role: user.role,
+				firstName: user.firstName,
+				lastName: user.lastName
 			});
 		} else {
 			return '';
@@ -45,7 +47,7 @@ function isValidUser(req, res, next) {
 }
 
 router.route('/register').post(function(req, res) {
-	Student.findOne({
+	User.findOne({
 		where: Sequelize.or({ email: req.body.email }, { username: req.body.username })
 	}).then((user) => {
 		if (user) {
@@ -53,11 +55,14 @@ router.route('/register').post(function(req, res) {
 		} else if (req.body.email == '' || req.body.username == '' || req.body.password == '') {
 			return res.status(500).json({ text: 'Fill in the form.' });
 		} else {
-			Student.create({
+			User.create({
 				email: req.body.email,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
 				username: req.body.username,
 				password: req.body.password,
-				teacher_id: 1
+				role: 'STUDENT',
+				teacherId: 1
 			});
 			res.status(200).json({ user: 'added successfully' });
 		}

@@ -57,7 +57,7 @@ class Chapter extends React.Component {
 				<div className={'block-wrapper'}>
 					{chapters.map((item) => (
 						<div className={'book'}>
-							<Link to={`/book/${item.book_id}`}>Back</Link>
+							<Link to={`/book/${item.bookId}`}>Back</Link>
 							<h1 key={item.title}>{item.title}</h1>
 							<hr />
 							<span>{item.description}</span>

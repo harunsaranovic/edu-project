@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
-const Student = require('../models/student');
+const User = require('../models/user');
 
 module.exports = function(passport) {
 	passport.use(
@@ -9,7 +9,7 @@ module.exports = function(passport) {
 				passwordField: 'password'
 			},
 			(username, password, done) => {
-				Student.findOne({
+				User.findOne({
 					where: { username: username }
 				}).then((user) => {
 					if (!user) {

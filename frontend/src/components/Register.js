@@ -3,7 +3,7 @@ import React from 'react';
 class Register extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { user: { email: '', username: '', password: '' }, error: '' };
+		this.state = { email: '', firstName: '', lastName: '', username: '', password: '', error: '' };
 	}
 
 	handleChange = (event) => {
@@ -14,7 +14,7 @@ class Register extends React.Component {
 		var _this = this;
 		fetch('http://localhost:8080/register', {
 			method: 'POST',
-			body: JSON.stringify(this.state.user),
+			body: JSON.stringify(this.state),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -47,30 +47,44 @@ class Register extends React.Component {
 						</span>
 						<form onSubmit={this.handleRegister}>
 							<h4>Your Info</h4>
-							<label>Email</label>
-							<br />
-							<input
-								type="email"
-								name="email"
-								value={this.state.user.email}
-								onChange={this.handleChange}
-							/>
-							<br />
 							<label>Userame</label>
 							<br />
 							<input
 								type="text"
 								name="username"
-								value={this.state.user.username}
+								value={this.state.username}
 								onChange={this.handleChange}
 							/>
 							<br />
+							<label>Email</label>
+							<br />
+							<input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+							<br />
+							<label>First name</label>
+							<br />
+							<input
+								type="text"
+								name="firstName"
+								value={this.state.firstName}
+								onChange={this.handleChange}
+							/>
+							<br />
+							<label>Last name</label>
+							<br />
+							<input
+								type="text"
+								name="lastName"
+								value={this.state.lastName}
+								onChange={this.handleChange}
+							/>
+							<br />
+
 							<label>Password</label>
 							<br />
 							<input
 								type="password"
 								name="password"
-								value={this.state.user.password}
+								value={this.state.password}
 								onChange={this.handleChange}
 							/>
 							<br />
