@@ -10,6 +10,15 @@ class Header extends React.Component {
 					<h3>Logo</h3>
 				</div>
 				<div className={'header-links'}>
+					{this.props.role == 'TEACHER' ? (
+						<div>
+							<div className={'header-link'}>
+								<Link to="/addbooks">Add books</Link>
+							</div>
+						</div>
+					) : (
+						''
+					)}
 					{!this.props.user ? (
 						<div>
 							<div className={'header-link'}>
@@ -43,6 +52,7 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		isLogged: state.isLogged,
+		role: state.role,
 		user: state.user
 	};
 };

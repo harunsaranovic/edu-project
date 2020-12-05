@@ -12,8 +12,8 @@ module.exports = sequelize.define(
 		title: Sequelize.STRING(200),
 		description: Sequelize.STRING(500),
 		color: Sequelize.STRING(30),
-		password: Sequelize.STRING,
-		teacher_id: Sequelize.INTEGER,
+		status: Sequelize.STRING(10),
+		teacherId: Sequelize.INTEGER,
 		dateCreated: {
 			type: Sequelize.DATE(3),
 			defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3)')

@@ -23,6 +23,7 @@ router.get('/loginsuccess/:username', (req, res) => {
 	}).then((user) => {
 		if (user) {
 			return res.status(200).json({
+				id: user.id,
 				user: user.username,
 				email: user.email,
 				teacher: user.teacherId ? user.teacherId : '',

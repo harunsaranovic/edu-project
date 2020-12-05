@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { username: 'user', password: 'password', error: '' };
+		this.state = { username: 'bob', password: 'password', error: '' };
 	}
 
 	handleChange = (event) => {
@@ -102,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
 				type: 'LOGIN',
 				payload: {
 					isLogged: true,
+					id: data.id,
 					user: data.user,
 					email: data.email,
 					teacher: data.teacher,

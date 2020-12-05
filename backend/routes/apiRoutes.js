@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const User = require('../models/user');
+const Book = require('../models/book');
 
 var con = mysql.createConnection({
 	host: 'localhost',
@@ -23,10 +24,53 @@ router.get('/test', function(req, res) {
 });
 
 router.get('/getbooks', function(req, res) {
-	con.query('SELECT * FROM edu_project.books;', function(err, result) {
-		if (err) throw err;
-		res.send(result);
+	Book.findAll({
+		where: { status: 'PUBLISHED' }
+	}).then((book) => {
+		if (book) {
+			return res.send(book);
+		} else {
+			return 'Books not found';
+		}
 	});
+});
+
+router.get('/getallbooks', function(req, res) {
+	Book.findAll().then((book) => {
+		if (book) {
+			return res.send(book);
+		} else {
+			return 'Books not found';
+		}
+	});
+});
+
+router.get('/getrequestedbooks', function(req, res) {
+	Book.findAll({
+		where: { status: 'REQUESTED' }
+	}).then((book) => {
+		if (book) {
+			return res.send(book);
+		} else {
+			return 'Books not found';
+		}
+	});
+});
+
+router.get('/getmybooks/:id', function(req, res) {
+	Book.findAll({
+		where: { teacherId: req.params.id }
+	}).then((book) => {
+		if (book) {
+			return res.send(book);
+		} else {
+			return 'Books not found';
+		}
+	});
+});
+
+router.post('/updatebook', (req, res, next) => {
+	Book.update({ title: req.body.title, description: req.body.description }, { where: { id: req.body.id } });
 });
 
 router.get('/getbook/:id', function(req, res) {
@@ -34,6 +78,26 @@ router.get('/getbook/:id', function(req, res) {
 		if (err) throw err;
 		res.send(result);
 	});
+});
+
+router.post('/addbookteacher', (req, res, next) => {
+	Book.create({
+		title: req.body.title,
+		description: req.body.description,
+		color: req.body.color,
+		teacherId: req.body.teacherId,
+		status: 'WRITING'
+	});
+});
+
+router.get('/requestbookpublishing/:id', (req, res, next) => {
+	Book.update({ status: 'REQUESTED' }, { where: { id: req.params.id } });
+	res.send('Book publishing requested');
+});
+
+router.get('/publishbook/:id', (req, res, next) => {
+	Book.update({ status: 'PUBLISHED' }, { where: { id: req.params.id } });
+	res.send('Book published');
 });
 
 router.get('/getchapters', function(req, res) {

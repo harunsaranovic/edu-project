@@ -32,9 +32,9 @@ body {
 body {
 	background-color: #eee;
 	font-family: 'Work Sans', sans-serif;
-	font-weight:400;
-	color:#262626;
-	height:100%;
+	font-weight: 400;
+	color: #262626;
+	height: 100%;
 }
 
 header {
@@ -43,11 +43,10 @@ header {
 	background-color: #262626;
 	color: #fff;
 	min-width: 600px;
-	height:50px;
-	display:flex;
+	height: 50px;
+	display: flex;
 	justify-content: space-between;
 	/*place-content:center;*/
-
 }
 
 header div {
@@ -56,19 +55,19 @@ header div {
 
 .logo {
 	align-self: center;
-	padding-left:2em;
+	padding-left: 2em;
 }
 
 .logo h3 {
-	color:#fff;
-	margin:0;
+	color: #fff;
+	margin: 0;
 }
 
 .header-links {
 	font-family: "Ropa Sans";
-	font-size:22px;
+	font-size: 22px;
 	align-self: center;
-	padding-right:2em;
+	padding-right: 2em;
 	padding-top: 25px;
 }
 
@@ -89,10 +88,10 @@ a {
 }
 
 .wrapper {
-	display:flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	height:100vh;
+	height: 100vh;
 }
 
 .block-wrapper {
@@ -213,10 +212,9 @@ label {
 	font-weight: 400;
 	color: #424242;
 	font-family: 'Work Sans', sans-serif;
-	margin:2px 0 4px 1px;
-	display:inline-block;
+	margin: 2px 0 4px 1px;
+	display: inline-block;
 }
-
 
 .book-grid {
 	display: grid;
@@ -224,6 +222,14 @@ label {
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-gap: 20px;
 	align-items: stretch;
+}
+
+.book-list {
+	padding: 22vh 20% 0 20%;
+}
+
+.book-table {
+	margin-top: 30px;
 }
 
 .book-card {
@@ -235,27 +241,26 @@ label {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius:5px;
-	border:rgba(0,0,0,0.3) 1px solid;
+	border-radius: 5px;
+	border: rgba(0, 0, 0, 0.3) 1px solid;
 }
 
 .book-card h1 {
-	width:75%;
-	font-size:1.8em;
-	font-weight:400;
+	width: 75%;
+	font-size: 1.8em;
+	font-weight: 400;
 	font-family: 'Ropa Sans', sans-serif;
-	padding-left:8px;
-
+	padding-left: 8px;
 }
 
 .orange {
-	background-color: #ECB664;
-	color:rgba(0,0,0,0.7);
+	background-color: #ecb664;
+	color: rgba(0, 0, 0, 0.7);
 }
 
 .gray {
 	background-color: #698390;
-	color:rgba(255,255,255,0.9);
+	color: rgba(255, 255, 255, 0.9);
 }
 
 ul {

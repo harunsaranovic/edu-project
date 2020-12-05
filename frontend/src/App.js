@@ -8,6 +8,9 @@ import Book from './components/Book.js';
 import Chapter from './components/Chapter.js';
 import Exercise from './components/Exercise.js';
 import Profile from './components/Profile.js';
+import AddBooks from './components/AddBooks.js';
+import EditBook from './components/EditBook.js';
+import CreateBook from './components/CreateBook.js';
 import './App.css';
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
 				<Route path="/chapter/:id" component={Chapter} />
 				<Route path="/exercise/:id" component={Exercise} />
 				<Route path="/profile" component={Profile} />
+				<Route path="/addbooks" component={AddBooks} />
+				<Route path="/editbook/:id" component={EditBook} />
+				<Route path="/createbook" component={CreateBook} />
 			</Switch>
 		</div>
 	);
