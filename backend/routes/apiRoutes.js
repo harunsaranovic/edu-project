@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const User = require('../models/user');
 const Book = require('../models/book');
+const Chapter = require('../models/chapter');
+const Exercise = require('../models/exercise');
+const Question = require('../models/question');
+const Answer = require('../models/answer');
 
 var con = mysql.createConnection({
 	host: 'localhost',
@@ -90,6 +94,80 @@ router.post('/addbookteacher', (req, res, next) => {
 	});
 });
 
+router.post('/addchaptertobook', (req, res, next) => {
+	Chapter.create({
+		title: req.body.title,
+		description: req.body.description,
+		number: req.body.number,
+		bookId: req.body.bookId
+	});
+});
+
+router.post('/updatechapter', (req, res, next) => {
+	Chapter.update(
+		{
+			title: req.body.title,
+			description: req.body.description,
+			number: req.body.number
+		},
+		{ where: { id: req.body.id } }
+	);
+});
+
+router.post('/updateexercise', (req, res, next) => {
+	Exercise.update(
+		{
+			title: req.body.title,
+			description: req.body.description,
+			order: req.body.order
+		},
+		{ where: { id: req.body.id } }
+	);
+});
+
+router.post('/createexercise', (req, res, next) => {
+	Exercise.create({
+		title: req.body.title,
+		description: req.body.description,
+		order: req.body.order,
+		chapterId: req.body.chapterId
+	});
+});
+
+router.post('/updatequestion', (req, res, next) => {
+	Question.update(
+		{
+			title: req.body.title
+		},
+		{ where: { id: req.body.id } }
+	);
+});
+
+router.post('/addquestion', (req, res, next) => {
+	Question.create({
+		title: req.body.title,
+		exerciseId: req.body.exerciseId
+	});
+});
+
+router.post('/updateanswer', (req, res, next) => {
+	Answer.update(
+		{
+			text: req.body.text,
+			correct: req.body.correct
+		},
+		{ where: { id: req.body.id } }
+	);
+});
+
+router.post('/addanswer', (req, res, next) => {
+	Answer.create({
+		text: req.body.text,
+		correct: req.body.correct,
+		questionId: req.body.questionId
+	});
+});
+
 router.get('/requestbookpublishing/:id', (req, res, next) => {
 	Book.update({ status: 'REQUESTED' }, { where: { id: req.params.id } });
 	res.send('Book publishing requested');
@@ -160,14 +238,26 @@ router.get('/getquestion/:id', function(req, res) {
 });
 
 router.get('/getquestionsfromexercise/:exerciseId', function(req, res) {
-	con.query('SELECT * FROM edu_project.questions WHERE id = ' + req.params.exerciseId + ';', function(err, result) {
-		if (err) throw err;
-		res.send(result);
+	Question.findAll({
+		where: { exerciseId: req.params.exerciseId }
+	}).then((qurestion) => {
+		if (qurestion) {
+			return res.send(qurestion);
+		} else {
+			return 'qurestions not found';
+		}
 	});
 });
 
 router.get('/getanswers', function(req, res) {
 	con.query('SELECT * FROM edu_project.answers;', function(err, result) {
+		if (err) throw err;
+		res.send(result);
+	});
+});
+
+router.get('/getsingleanswer/:answerId', function(req, res) {
+	con.query('SELECT * FROM edu_project.answers WHERE id = ' + req.params.answerId + ';', function(err, result) {
 		if (err) throw err;
 		res.send(result);
 	});

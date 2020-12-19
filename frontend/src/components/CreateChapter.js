@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class CreateBook extends React.Component {
+class CreateChapter extends React.Component {
 	constructor(props) {
 		super(props);
 		if (!props.isLogged) props.history.push('/login');
 		this.state = {
+			clicked: false,
+			button: 'CREATE',
 			error: null,
 			title: null,
-			description: null,
-			color: null,
-			clicked: false,
-			button: 'CREATE'
+			number: null,
+			description: null
 		};
 	}
 
@@ -25,16 +25,17 @@ class CreateBook extends React.Component {
 		var body = {
 			title: this.state.title,
 			description: this.state.description,
-			color: this.state.color,
-			teacherId: this.props.teacherId
+			number: this.state.number,
+			bookId: this.props.match.params.id
 		};
-		fetch('http://localhost:8080/addbookteacher', {
+		fetch('http://localhost:8080/addchaptertobook', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		});
+		//.then(this.props.history.push('/editbook/' + this.props.match.params.id));
 		event.preventDefault();
 	};
 
@@ -47,20 +48,16 @@ class CreateBook extends React.Component {
 				<div className={'block-wrapper'}>
 					<form onSubmit={this.handleCreate}>
 						<div className={'book'}>
-							<Link to={'/addbooks'}>Back</Link>
-							<br />
+							<Link to={'/editbook/' + this.props.match.params.id}>Back</Link>
 							<br />
 							<label>Title</label>
-							<br />
 							<input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
 							<br />
+							<label>Number</label>
+							<input type="text" name="number" value={this.state.number} onChange={this.handleChange} />
+							<br />
 							<label>Description</label>
-							<br />
 							<textarea name="description" value={this.state.description} onChange={this.handleChange} />
-							<br />
-							<label>Color</label>
-							<br />
-							<input type="text" name="color" value={this.state.color} onChange={this.handleChange} />
 						</div>
 						<br />
 						<input type="submit" disabled={this.state.clicked} value={this.state.button} />
@@ -79,4 +76,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(CreateBook);
+export default connect(mapStateToProps)(CreateChapter);

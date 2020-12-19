@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class EditBook extends React.Component {
+class EditQuestion extends React.Component {
 	constructor(props) {
 		super(props);
 		if (!props.isLogged) props.history.push('/login');
@@ -10,10 +10,9 @@ class EditBook extends React.Component {
 			error: null,
 			isLoaded: false,
 			title: null,
-			description: null,
 			clicked: false,
 			button: 'UPDATE',
-			chapters: []
+			answers: []
 		};
 	}
 
@@ -22,14 +21,13 @@ class EditBook extends React.Component {
 	};
 
 	componentDidMount() {
-		fetch('http://localhost:8080/getbook/' + this.props.match.params.id).then((res) => res.json()).then(
+		fetch('http://localhost:8080/getquestion/' + this.props.match.params.id).then((res) => res.json()).then(
 			(result) => {
 				this.setState({
 					isLoaded: true,
-					bookId: result[0].id,
-					title: result[0].title,
-					status: result[0].status,
-					description: result[0].description
+					questionId: result[0].id,
+					exerciseId: result[0].exerciseId,
+					title: result[0].title
 				});
 			},
 			(error) => {
@@ -39,11 +37,11 @@ class EditBook extends React.Component {
 				});
 			}
 		);
-		fetch('http://localhost:8080/getchaptersfrombook/' + this.props.match.params.id).then((res) => res.json()).then(
+		fetch('http://localhost:8080/getquestionanswers/' + this.props.match.params.id).then((res) => res.json()).then(
 			(result) => {
 				this.setState({
 					isLoaded: true,
-					chapters: result
+					answers: result
 				});
 			},
 			(error) => {
@@ -58,11 +56,10 @@ class EditBook extends React.Component {
 	handleUpdate = (event) => {
 		this.setState({ clicked: true, button: 'DONE' });
 		var body = {
-			id: this.state.bookId,
-			title: this.state.title,
-			description: this.state.description
+			id: this.state.questionId,
+			title: this.state.title
 		};
-		fetch('http://localhost:8080/updatebook', {
+		fetch('http://localhost:8080/updatequestion', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
@@ -72,12 +69,8 @@ class EditBook extends React.Component {
 		event.preventDefault();
 	};
 
-	hanldePublishReq = (event) => {
-		fetch('http://localhost:8080/requestbookpublishing/' + this.state.bookId);
-	};
-
 	render() {
-		const { error, isLoaded, chapters } = this.state;
+		const { error, isLoaded, answers } = this.state;
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
@@ -85,7 +78,7 @@ class EditBook extends React.Component {
 		} else {
 			return (
 				<div className={'block-wrapper'}>
-					<Link to={'/addbooks'}>Back</Link>
+					<Link to={`/editexercise/${this.state.exerciseId}`}>Back</Link>
 					<br />
 					<br />
 					<br />
@@ -94,35 +87,25 @@ class EditBook extends React.Component {
 							<label>Title</label>
 							<br />
 							<input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
-							<br />
-							<label>Description</label>
-							<br />
-							<textarea name="description" value={this.state.description} onChange={this.handleChange} />
 						</div>
 
 						<table className={'book-table'}>
 							<tbody>
-								{chapters.map((chapter) => (
+								{answers.map((answer) => (
 									<tr>
-										<td key={chapter.title}>{chapter.title}</td>
+										<td>{answer.correct}</td>
+										<td key={answer.text}>{answer.text}</td>
 										<td>
-											<Link to={`/editchapter/${chapter.id}`}>Edit Chapter</Link>
+											<Link to={`/editanswer/${answer.id}`}>Edit Answer</Link>
 										</td>
 									</tr>
 								))}
 							</tbody>
 						</table>
-						<Link to={'/createchapter/' + this.state.bookId}>Add a new chapter</Link>
+						<Link to={'/createanswer/' + this.state.questionId}>Add a new answer</Link>
 						<br />
 						<br />
 						<input type="submit" disabled={this.state.clicked} value={this.state.button} />
-						{this.state.status == 'WRITING' ? (
-							<a className={'third-button'} onClick={this.hanldePublishReq}>
-								Publish
-							</a>
-						) : (
-							''
-						)}
 					</form>
 				</div>
 			);
@@ -137,4 +120,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(EditBook);
+export default connect(mapStateToProps)(EditQuestion);

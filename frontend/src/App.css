@@ -273,6 +273,21 @@ ul li {
 	list-style-type: none;
 }
 
+input[type=submit]:disabled {
+	background-color: #64ece5;
+}
+
+.third-button {
+	cursor: pointer;
+	background-color: #af64ec;
+	border-color: #af64ec;
+	font-family: 'Tuffy Bold';
+	font-size: 18px;
+	padding: 6px 10px 6px 10px;
+	text-transform: uppercase;
+	color: #fff;
+}
+
 @media screen and (max-width: 900px) {
 	.login-image-placeholder {
 		opacity: 0;

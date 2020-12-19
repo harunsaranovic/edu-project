@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class EditBook extends React.Component {
+class EditChapter extends React.Component {
 	constructor(props) {
 		super(props);
 		if (!props.isLogged) props.history.push('/login');
@@ -10,10 +10,13 @@ class EditBook extends React.Component {
 			error: null,
 			isLoaded: false,
 			title: null,
+			chapterId: null,
+			bookId: null,
 			description: null,
+			number: null,
 			clicked: false,
 			button: 'UPDATE',
-			chapters: []
+			exercises: []
 		};
 	}
 
@@ -22,13 +25,14 @@ class EditBook extends React.Component {
 	};
 
 	componentDidMount() {
-		fetch('http://localhost:8080/getbook/' + this.props.match.params.id).then((res) => res.json()).then(
+		fetch('http://localhost:8080/getchapter/' + this.props.match.params.id).then((res) => res.json()).then(
 			(result) => {
 				this.setState({
 					isLoaded: true,
+					chapterId: result[0].id,
 					bookId: result[0].id,
 					title: result[0].title,
-					status: result[0].status,
+					number: result[0].number,
 					description: result[0].description
 				});
 			},
@@ -39,30 +43,33 @@ class EditBook extends React.Component {
 				});
 			}
 		);
-		fetch('http://localhost:8080/getchaptersfrombook/' + this.props.match.params.id).then((res) => res.json()).then(
-			(result) => {
-				this.setState({
-					isLoaded: true,
-					chapters: result
-				});
-			},
-			(error) => {
-				this.setState({
-					isLoaded: true,
-					error
-				});
-			}
-		);
+		fetch('http://localhost:8080/getexercisesfromchapter/' + this.props.match.params.id)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					this.setState({
+						isLoaded: true,
+						exercises: result
+					});
+				},
+				(error) => {
+					this.setState({
+						isLoaded: true,
+						error
+					});
+				}
+			);
 	}
 
 	handleUpdate = (event) => {
 		this.setState({ clicked: true, button: 'DONE' });
 		var body = {
-			id: this.state.bookId,
+			id: this.state.chapterId,
 			title: this.state.title,
+			number: this.state.number,
 			description: this.state.description
 		};
-		fetch('http://localhost:8080/updatebook', {
+		fetch('http://localhost:8080/updatechapter', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
@@ -72,12 +79,8 @@ class EditBook extends React.Component {
 		event.preventDefault();
 	};
 
-	hanldePublishReq = (event) => {
-		fetch('http://localhost:8080/requestbookpublishing/' + this.state.bookId);
-	};
-
 	render() {
-		const { error, isLoaded, chapters } = this.state;
+		const { error, isLoaded, exercises } = this.state;
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
@@ -85,7 +88,7 @@ class EditBook extends React.Component {
 		} else {
 			return (
 				<div className={'block-wrapper'}>
-					<Link to={'/addbooks'}>Back</Link>
+					<Link to={`/editbook/${this.state.bookId}`}>Back</Link>
 					<br />
 					<br />
 					<br />
@@ -98,31 +101,28 @@ class EditBook extends React.Component {
 							<label>Description</label>
 							<br />
 							<textarea name="description" value={this.state.description} onChange={this.handleChange} />
+							<br />
+							<label>Number</label>
+							<br />
+							<input type="number" name="title" value={this.state.number} onChange={this.handleChange} />
 						</div>
 
 						<table className={'book-table'}>
 							<tbody>
-								{chapters.map((chapter) => (
+								{exercises.map((exercise) => (
 									<tr>
-										<td key={chapter.title}>{chapter.title}</td>
+										<td key={exercise.title}>{exercise.title}</td>
 										<td>
-											<Link to={`/editchapter/${chapter.id}`}>Edit Chapter</Link>
+											<Link to={`/editexercise/${exercise.id}`}>Edit Exercise</Link>
 										</td>
 									</tr>
 								))}
 							</tbody>
 						</table>
-						<Link to={'/createchapter/' + this.state.bookId}>Add a new chapter</Link>
+						<Link to={'/createexercise/' + this.state.chapterId}>Add a new exercise</Link>
 						<br />
 						<br />
 						<input type="submit" disabled={this.state.clicked} value={this.state.button} />
-						{this.state.status == 'WRITING' ? (
-							<a className={'third-button'} onClick={this.hanldePublishReq}>
-								Publish
-							</a>
-						) : (
-							''
-						)}
 					</form>
 				</div>
 			);
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(EditBook);
+export default connect(mapStateToProps)(EditChapter);
