@@ -68,7 +68,7 @@ header div {
 	font-size: 22px;
 	align-self: center;
 	padding-right: 2em;
-	padding-top: 25px;
+	padding-top: 4px;
 }
 
 .header-link {
@@ -104,6 +104,7 @@ form a {
 }
 
 .login-wrapper {
+	margin-top:35px;
 	min-height: 27em;
 	display: flex;
 	flex-direction: row;
@@ -123,7 +124,6 @@ form a {
 	width: 45%;
 	height: auto;
 	min-height: 100%;
-	position: relative;
 	background-color: #c4d6b6;
 	background-position: center;
 	background-size: 85%;
@@ -174,8 +174,8 @@ input {
 }
 
 span {
-	font-size: 16px;
-	line-height: 28px;
+	font-size: 14px;
+	line-height: 22px;
 	margin-top: 10px;
 	width: 95%;
 }
@@ -186,22 +186,22 @@ h5 {
 	text-transform: uppercase;
 	font-family: "Tuffy Bold";
 	font-weight: normal;
-	margin-bottom: 12px;
+	margin-bottom: 10px;
 	color: #363636;
 }
 
 h3 {
-	font-size: 25px;
+	font-size: 24px;
 	margin-bottom: 7px;
 }
 
 h4 {
-	font-size: 21px;
+	font-size: 18px;
 }
 
 .create-account-link {
 	color: #83a866;
-	font-size: 1.4em;
+	font-size: 20px;
 	line-height: 4em;
 	font-family: "Tuffy Bold";
 }
